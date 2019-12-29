@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pathivu</title>
+    <link>/</link>
+    <description>Recent content on Pathivu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 28 Nov 2018 15:14:39 +1000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Query</title>
+      <link>/docs/query/</link>
+      <pubDate>Sun, 29 Dec 2019 22:42:33 +0530</pubDate>
+      
+      <guid>/docs/query/</guid>
+      <description>Pathivu currently support query like selection, average, distinct and count. If you would like to see more query features, please feel free to open an &lt;a href=&#34;https://gihub.com/pathivu/pathivu&#34;&gt;issue&lt;/a&gt;</description>
+    </item>
+    
+    <item>
+      <title>Deployment</title>
+      <link>/docs/deployment/</link>
+      <pubDate>Mon, 30 Dec 2019 00:03:37 +0530</pubDate>
+      
+      <guid>/docs/deployment/</guid>
+      <description>Pathivu can be deployed in all kind of environmets like bare metal, kubernetes&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>Katch CLI</title>
+      <link>/docs/katchcli/</link>
+      <pubDate>Mon, 30 Dec 2019 00:03:29 +0530</pubDate>
+      
+      <guid>/docs/katchcli/</guid>
+      <description>Katchi is a cli tool to query pathivu server.</description>
+    </item>
+    
+  </channel>
+</rss>

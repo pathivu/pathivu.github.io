@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Query - Pathivu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="/favicon.png">
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.d0149e46d37ed09a60f55899204505f757aeb152bb817cdb02a1a2bf5728bb6b.css">
+  
+
+  
+
+</head>
+
+<body class='page page-default-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-docs">
+      <a href="/docs/">
+        <span>Docs</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-twitter">
+      <a href="https://twitter.com/PathivuHQ">
+        <span>twitter</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+  <div class="wrapper">
+    <div class='header'>
+  <div class="container">
+    <div class="logo">
+      <a href="/"><img alt="Logo" src="/pathivu.jpeg" /></a>
+    </div>
+    <div class="logo-mobile">
+      <a href="/"><img alt="Logo" src="/" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-docs">
+      <a href="/docs/">
+        <span>Docs</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-twitter">
+      <a href="https://twitter.com/PathivuHQ">
+        <span>twitter</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+
+
+    
+    
+    
+    
+    
+    
+
+    
+    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+      <div class="row">
+        <div class="col-12 col-md-3 mb-3">
+          <div class="sidebar">
+            
+<div class="docs-menu">
+  <h4>Docs</h4>
+  <ul>
+    
+    <li class="active ">
+      <a href="/docs/query/">Query</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/deployment/">Deployment</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/katchcli/">Katch CLI</a>
+    </li>
+    
+  </ul>
+</div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-9">
+          
+<h1 class="title">Query</h1>
+<div class="content ">
+  <p>Pathivu currently support query like selection, average, distinct and count. If you would like to see more query features, please feel free to open an <a href="https://gihub.com/pathivu/pathivu">issue</a></p>
+<h3 id="selection">Selection</h3>
+<p>Pathivu now supports both fuzzy search and structured json style search.</p>
+<p>For fuzzy serach, in pathivu message keyword is used.</p>
+<p>In the below example, we are finding the log line which containing warn.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">message <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;warn&#34;</span>
+</code></pre></div><p>For structured query, flattend json field is used.</p>
+<p>In the below example, we are finding all the user from the Kumari Kandam.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">user.location <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Kumari Kandam&#34;</span>
+</code></pre></div><h3 id="count">Count</h3>
+<p>The below query will gives you the count of country field in the log lines.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">count<span style="color:#f92672">(</span>country<span style="color:#f92672">)</span> as country_count
+</code></pre></div><p>You can aggregate by adding <code>by</code>keyword.</p>
+<p>The below query will count all the log line with the transaction field and aggregates by country.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">count<span style="color:#f92672">(</span>transaction<span style="color:#f92672">)</span> as transaction_count by region
+</code></pre></div><p>Result will looks like</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#f92672">&#34;data&#34;</span>:[
+        {
+            <span style="color:#f92672">&#34;transaction_count&#34;</span>: <span style="color:#ae81ff">100</span>,
+            <span style="color:#f92672">&#34;country&#34;</span>: <span style="color:#e6db74">&#34;Kumari Kandam&#34;</span>
+        },
+        {
+            <span style="color:#f92672">&#34;transaction_count&#34;</span>: <span style="color:#ae81ff">100</span>,
+            <span style="color:#f92672">&#34;country&#34;</span>: <span style="color:#e6db74">&#34;Atlantis&#34;</span>
+        }
+    ]
+}
+</code></pre></div><h3 id="average">Average</h3>
+<p>you can find the average of the numerical fields.</p>
+<p>This below query will find the average latency of your service.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">avg<span style="color:#f92672">(</span>latency<span style="color:#f92672">)</span> as average_latency
+</code></pre></div><p>You can apply grouping in the average quries as well.</p>
+<p>The below query will find the averge latency by country wise.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">avg<span style="color:#f92672">(</span>latency<span style="color:#f92672">)</span> as average_latency by country
+</code></pre></div><h3 id="distinct">Distinct</h3>
+<p>You can find the distict elements by distinct key word</p>
+<p>The below query will give you all the distict country value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">distinct<span style="color:#f92672">(</span>country<span style="color:#f92672">)</span> as dictinct_country
+</code></pre></div><p>In order to find distinct value count, you can use <code>distinct_count</code> keyword.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">distinct_count<span style="color:#f92672">(</span>country<span style="color:#f92672">)</span> as country_count
+</code></pre></div><p>Result will looks like</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#f92672">&#34;data&#34;</span>:[
+        {
+            <span style="color:#f92672">&#34;country_count&#34;</span>: <span style="color:#ae81ff">100</span>,
+            <span style="color:#f92672">&#34;country&#34;</span>: <span style="color:#e6db74">&#34;Kumari Kandam&#34;</span>
+        },
+        {
+            <span style="color:#f92672">&#34;country_count&#34;</span>: <span style="color:#ae81ff">100</span>,
+            <span style="color:#f92672">&#34;country&#34;</span>: <span style="color:#e6db74">&#34;Atlantis&#34;</span>
+        }
+    ]
+}
+</code></pre></div><h3 id="pipe">Pipe</h3>
+<p>User can combine two quries using <code>|</code> operator</p>
+<p>The below query find the count of all the failed transaction country wise.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">transaction<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;failed&#34;</span> | distinct_count<span style="color:#f92672">(</span>country<span style="color:#f92672">)</span> as failed_transaction_country_wise
+</code></pre></div><h3 id="source">Source</h3>
+<p>User can specify the sources that the user would like to serach on using <code>source</code> keyword. Multiple sources are mentioned using <code>,</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">source<span style="color:#f92672">=</span>transaction_service,refund_service
+</code></pre></div>
+</div>
+</div>
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="sub-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer-inner">
+          <ul>
+            <li class="zerostatic"><a href="https://github.com/pathivu/pathivu">Pathivu</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/scripts.min.1237ff71925bb8625c97a9af8db4c54525258bedfd7c47493daaff723bea755e.js"></script>
+  
+
+  
+  
+  
+    
+      
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86753026-3"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-86753026-3');
+      </script>
+    
+  
+
+
+</body>
+
+</html>
